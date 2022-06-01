@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@line/liff": "^2.19.1",
-    "buefy": "^0.9.20",
+    "buefy": "^0.9.21",
     "core-js": "^3.22.3",
     "register-service-worker": "^1.7.2",
     "tslint-config-prettier": "^1.18.0",
