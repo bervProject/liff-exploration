@@ -2,21 +2,25 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import liff from '@line/liff';
 
 @Component({
-  name: 'home'
+  name: 'home',
 })
 export default class Home extends Vue {
-  protected isLogin: boolean = false
+  protected isLogin = false
+
   protected userData: any = {
     userId: null,
     pictureUrl: null,
   }
-  protected isClient: boolean = false
+
+  protected isClient = false
+
   protected message: any = null
+
   protected notes: any[] = []
 
   @Watch('notes')
   public onNotesChanged() {
-    const userId = this.userData.userId;
+    const { userId } = this.userData;
     localStorage.setItem(`notes-${userId}`, JSON.stringify(this.notes));
   }
 
@@ -31,7 +35,6 @@ export default class Home extends Vue {
     }
   }
 
-
   protected login() {
     liff.login();
   }
@@ -40,6 +43,7 @@ export default class Home extends Vue {
     liff.logout();
     window.location.reload();
   }
+
   protected openAnother() {
     liff.openWindow({
       url: 'https://www.berviantoleo.my.id',
@@ -52,6 +56,7 @@ export default class Home extends Vue {
     alert(accessToken);
     // console.log(accessToken);
   }
+
   protected addNote() {
     if (!this.message) {
       return;
@@ -91,6 +96,7 @@ export default class Home extends Vue {
         });
       });
   }
+
   protected loadLocalStorage(userId: string) {
     const res = localStorage.getItem(`notes-${userId}`);
     if (!res) {
