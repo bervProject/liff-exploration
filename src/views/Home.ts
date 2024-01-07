@@ -88,7 +88,7 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     submit(index: any) {
       const message = this.notes[index];
-      const loadingComponent = this.oruga.loading.open();
+      const loadingComponent = this.oruga.loading.open({});
       liff
         .sendMessages([
           {
@@ -97,7 +97,7 @@ export default defineComponent({
           },
         ])
         .then(() => {
-          loadingComponent.close();
+          loadingComponent.close(undefined);
           this.showNotification({
             message: 'Success Send Message',
             type: 'success',
@@ -105,7 +105,7 @@ export default defineComponent({
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .catch((err: any) => {
-          loadingComponent.close();
+          loadingComponent.close(undefined);
           this.showNotification({
             message: `Can't Send Message! Error: ${err}`,
             type: 'danger',
