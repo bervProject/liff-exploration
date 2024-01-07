@@ -97,7 +97,7 @@ export default defineComponent({
           },
         ])
         .then(() => {
-          loadingComponent.close(undefined);
+          loadingComponent.close({});
           this.showNotification({
             message: 'Success Send Message',
             type: 'success',
@@ -105,7 +105,7 @@ export default defineComponent({
         })
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .catch((err: any) => {
-          loadingComponent.close(undefined);
+          loadingComponent.close({});
           this.showNotification({
             message: `Can't Send Message! Error: ${err}`,
             type: 'danger',
