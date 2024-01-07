@@ -1,11 +1,11 @@
 import liff from '@line/liff';
-import { useProgrammatic } from '@oruga-ui/oruga-next';
+import { useOruga } from '@oruga-ui/oruga-next';
 import { defineComponent, ref, watch } from 'vue';
 
 export default defineComponent({
   name: 'homePage',
   setup() {
-    const { oruga } = useProgrammatic();
+    const oruga = useOruga();
     function showNotification({ message, type }: {message: string, type: string}) {
       oruga.notification.open({
         message,
