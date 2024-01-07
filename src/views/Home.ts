@@ -88,9 +88,7 @@ export default defineComponent({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     submit(index: any) {
       const message = this.notes[index];
-      const loadingComponent = this.oruga.loading.open({
-        container: null,
-      });
+      const loadingComponent = this.oruga.loading.open();
       liff
         .sendMessages([
           {
