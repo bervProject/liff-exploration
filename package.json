@@ -16,7 +16,7 @@
     "core-js": "^3.36.1",
     "register-service-worker": "^1.7.2",
     "tslint-config-prettier": "^1.18.0",
-    "vue": "^3.4.21",
+    "vue": "^3.4.26",
     "vue-router": "^4.3.0",
     "vuex": "^4.1.0"
   },
