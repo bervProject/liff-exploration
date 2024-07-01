@@ -27,7 +27,7 @@
 
       <div class="navbar-end">
         <div class="navbar-item" v-if="isLogin">
-          Welcome, {{ userData.displayName }}!
+          Welcome, {{ userData.displayName }}! , hi {{ userData.userId }}!
         </div>
         <div class="navbar-item">
           <div class="buttons">
