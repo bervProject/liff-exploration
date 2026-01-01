@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@line/liff": "^2.27.3",
-    "@oruga-ui/oruga-next": "^0.12.2",
+    "@oruga-ui/oruga-next": "^0.12.3",
     "@oruga-ui/theme-bulma": "^0.8.1",
     "core-js": "^3.47.0",
     "register-service-worker": "^1.7.2",
