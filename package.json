@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@line/liff": "^2.28.0",
-    "@oruga-ui/oruga-next": "^0.12.6",
-    "@oruga-ui/theme-bulma": "^0.8.3",
+    "@oruga-ui/oruga-next": "^0.13.1",
+    "@oruga-ui/theme-bulma": "^0.9.0",
     "core-js": "^3.49.0",
     "register-service-worker": "^1.7.2",
     "tslint-config-prettier": "^1.18.0",
