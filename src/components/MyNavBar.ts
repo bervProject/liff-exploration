@@ -1,49 +1,37 @@
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
 import liff from '@line/liff';
+import { initLiff } from '@/liff';
 
 export default defineComponent({
   name: 'MyNavBar',
-  data() {
-    return {
-      isLogin: false,
-      activator: false,
-      userData: {
-        userId: '',
-        displayName: '',
-      },
-    };
-  },
-  mounted() {
-    this.isLogin = liff.isLoggedIn();
-    if (this.isLogin) {
-      liff.getProfile().then((value) => {
-        this.userData.userId = value.userId;
-        this.userData.displayName = value.displayName;
-      });
+  setup() {
+    const isLogin = ref(false);
+    const activator = ref(false);
+    const userData = ref({ userId: '', displayName: '' });
+
+    onMounted(async () => {
+      await initLiff();
+      isLogin.value = liff.isLoggedIn();
+      if (isLogin.value) {
+        const profile = await liff.getProfile();
+        userData.value = { userId: profile.userId, displayName: profile.displayName };
+      }
+    });
+
+    function makeBurger() {
+      activator.value = !activator.value;
     }
-  },
-  methods: {
-    makeBurger() {
-      this.activator = !this.activator;
-      return this.activator;
-    },
-    login() {
+
+    async function login() {
+      await initLiff();
       liff.login();
-    },
-    logout() {
+    }
+
+    function logout() {
       liff.logout();
       window.location.reload();
-    },
-    openAnother() {
-      liff.openWindow({
-        url: 'https://line.me',
-        external: true,
-      });
-    },
-    getAccessToken() {
-      const accessToken = liff.getAccessToken();
-      alert(accessToken);
-      // console.log(accessToken);
-    },
+    }
+
+    return { isLogin, activator, userData, makeBurger, login, logout };
   },
 });

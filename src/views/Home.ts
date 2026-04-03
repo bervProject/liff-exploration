@@ -1,130 +1,95 @@
 import liff from '@line/liff';
+import { initLiff } from '@/liff';
 import { useOruga } from '@oruga-ui/oruga-next';
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch, onMounted } from 'vue';
 
 export default defineComponent({
-  name: 'homePage',
+  name: 'HomePage',
   setup() {
     const oruga = useOruga();
-    function showNotification({ message, type }: {message: string, type: string}) {
+    const isLogin = ref(false);
+    const isClient = ref(false);
+    const message = ref<string>('');
+    const notes = ref<string[]>([]);
+    const userData = ref<{ userId: string | null; pictureUrl: string | null }>({
+      userId: null,
+      pictureUrl: null,
+    });
+
+    function showNotification({ message: msg, type }: { message: string; type: string }) {
       oruga.notification.open({
-        message,
+        message: msg,
         position: 'bottom-right',
         variant: type,
         closable: true,
       });
     }
-    const notes = ref<string[]>([]);
-    const userData = ref({
-      userId: null,
-      pictureUrl: null,
-    });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    watch(notes, async (newNotes, _) => {
+
+    function loadLocalStorage(userId: string | null) {
+      if (!userId) return;
+      const res = localStorage.getItem(`notes-${userId}`);
+      if (!res) return;
+      const notesList = JSON.parse(res);
+      if (notesList != null) notes.value = notesList;
+    }
+
+    watch(notes, (newNotes) => {
       if (Array.isArray(newNotes)) {
-        const { userId } = userData.value;
-        localStorage.setItem(`notes-${userId}`, JSON.stringify(newNotes));
+        localStorage.setItem(`notes-${userData.value.userId}`, JSON.stringify(newNotes));
       }
     });
-    return {
-      notes,
-      userData,
-      showNotification,
-      oruga,
-    };
-  },
-  data() : {
-    isLogin: boolean,
-    isClient: boolean,
-    message: string | null,
-    } {
-    return {
-      isLogin: false,
-      isClient: false,
-      message: null,
-    };
-  },
-  methods: {
-    created() {
-      this.isLogin = liff.isLoggedIn();
-      if (this.isLogin) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        liff.getProfile().then((value: any) => {
-          this.userData = value;
-          this.loadLocalStorage(this.userData.userId);
-        });
-        this.isClient = liff.isInClient();
+
+    onMounted(async () => {
+      await initLiff();
+      isLogin.value = liff.isLoggedIn();
+      if (isLogin.value) {
+        const profile = await liff.getProfile();
+        userData.value = { userId: profile.userId, pictureUrl: profile.pictureUrl ?? null };
+        loadLocalStorage(profile.userId);
+        isClient.value = liff.isInClient();
       }
-    },
-    login() {
-      liff.login();
-    },
-    logout() {
+    });
+
+    function logout() {
       liff.logout();
       window.location.reload();
-    },
-    openAnother() {
-      liff.openWindow({
-        url: 'https://www.berviantoleo.my.id',
-        external: true,
-      });
-    },
-    getAccessToken() {
-      const accessToken = liff.getAccessToken();
-      alert(accessToken);
-      // console.log(accessToken);
-    },
-    addNote() {
-      if (!this.message) {
-        return;
-      }
-      this.notes.push(this.message);
-      this.message = '';
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    deleteNote(index: any) {
-      this.notes.splice(index, 1);
-    },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    submit(index: any) {
-      const message = this.notes[index];
-      const loadingComponent = this.oruga.loading.open({});
+    }
+
+    function openAnother() {
+      liff.openWindow({ url: 'https://www.berviantoleo.my.id', external: true });
+    }
+
+    function getAccessToken() {
+      alert(liff.getAccessToken());
+    }
+
+    function addNote() {
+      if (!message.value) return;
+      notes.value.push(message.value);
+      message.value = '';
+    }
+
+    function deleteNote(index: number) {
+      notes.value.splice(index, 1);
+    }
+
+    function submit(index: number) {
+      const loadingComponent = oruga.loading.open({});
       liff
-        .sendMessages([
-          {
-            type: 'text',
-            text: message,
-          },
-        ])
+        .sendMessages([{ type: 'text', text: notes.value[index] }])
         .then(() => {
           loadingComponent.close();
-          this.showNotification({
-            message: 'Success Send Message',
-            type: 'success',
-          });
+          showNotification({ message: 'Success Send Message', type: 'success' });
         })
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .catch((err: any) => {
+        .catch((err) => {
           loadingComponent.close();
-          this.showNotification({
-            message: `Can't Send Message! Error: ${err}`,
-            type: 'danger',
-          });
+          showNotification({ message: `Can't Send Message! Error: ${err}`, type: 'danger' });
         });
-    },
-    loadLocalStorage(userId: string | null) {
-      if (!userId) {
-        return;
-      }
-      const res = localStorage.getItem(`notes-${userId}`);
-      if (!res) {
-        return;
-      }
-      const notesList = JSON.parse(res);
-      if (notesList == null) {
-        return;
-      }
-      this.notes = notesList;
-    },
+    }
+
+    return {
+      isLogin, isClient, message, notes, userData,
+      logout, openAnother, getAccessToken, addNote, deleteNote, submit,
+    };
   },
 });

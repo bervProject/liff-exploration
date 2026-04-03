@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [24.x, 25.x]
     steps:
     - uses: actions/checkout@v6
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,10 +27,10 @@ jobs:
       run: yarn build
       env:
         CI: true
-    #- name: Unit Test
-    #  run: yarn test:unit
+    - name: Unit Test
+      run: yarn test:unit
     - name: E2E
-      run: yarn test:e2e --headless
+      run: yarn test:e2e
     - name: Upload coverage
-      if: ${{ matrix.node-version == '22.x' }}
+      if: ${{ matrix.node-version == '24.x' }}
       uses: codecov/codecov-action@v6
