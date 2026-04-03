@@ -20,4 +20,13 @@ export default defineConfig({
       exclude: ['src/main.ts'],
     },
   },
+  css: {
+    transformer: 'lightningcss',
+    lightningcss: {
+      errorRecovery: true
+    },
+  },
+  build: {
+    cssMinify: 'lightningcss',
+  },
 });
