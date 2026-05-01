@@ -31,7 +31,7 @@
     "eslint-plugin-vuejs-accessibility": "^2.5.0",
     "globals": "^17.4.0",
     "jsdom": "^29.0.1",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.3",
     "sass": "^1.99.0",
     "start-server-and-test": "^3.0.0",
     "typescript": "^6.0.2",
