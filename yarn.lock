@@ -158,10 +158,10 @@
     tough-cookie "^5.0.0"
     tunnel-agent "^0.6.0"
 
-"@cypress/vite-dev-server@^7.3.1":
-  version "7.3.1"
-  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-7.3.1.tgz#5ff641857eccea3857c4fcd92bddd9c59fa85ed6"
-  integrity sha512-tP5pJ2I0elUMZynJK+sPGrhLkfWHvcRaMMlFOQmpeGdve+d1ubsiiqJAoy5FEa8g39zJyWOfMEl0iFePrc3zXw==
+"@cypress/vite-dev-server@^7.3.3":
+  version "7.3.3"
+  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-7.3.3.tgz#822887a9e02b8ddfc30492e42e526db4e4dc1bbe"
+  integrity sha512-F8D3Iw9M+LZIzS/JHV4bMnSCq4weaFxbMRhbrzq+dThy+rpimCiQctW2EfY5W2P2TBB60Suo+MuzveiqbD17Ag==
   dependencies:
     debug "^4.3.4"
     find-up "6.3.0"
