@@ -23,7 +23,7 @@
   "devDependencies": {
     "@cypress/vite-dev-server": "^7.3.3",
     "@vitejs/plugin-vue": "^6.0.7",
-    "@vue/eslint-config-typescript": "^14.7.0",
+    "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/test-utils": "^2.4.6",
     "cypress": "^15.16.0",
     "eslint": "^10.6.0",
