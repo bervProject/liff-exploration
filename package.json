@@ -28,7 +28,7 @@
     "cypress": "^15.19.0",
     "eslint": "^10.9.1",
     "eslint-plugin-vue": "^10.10.0",
-    "eslint-plugin-vuejs-accessibility": "^2.5.0",
+    "eslint-plugin-vuejs-accessibility": "^2.6.0",
     "globals": "^17.8.0",
     "jsdom": "^29.1.1",
     "prettier": "^3.9.6",
