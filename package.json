@@ -12,7 +12,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@line/liff": "^2.30.0",
+    "@line/liff": "^2.31.1",
     "@oruga-ui/oruga-next": "^0.14.4",
     "@oruga-ui/theme-bulma": "^0.10.1",
     "register-service-worker": "^1.7.2",
