@@ -179,10 +179,10 @@
     tough-cookie "^5.0.0"
     tunnel-agent "^0.6.0"
 
-"@cypress/vite-dev-server@^7.3.4":
-  version "7.3.4"
-  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-7.3.4.tgz#0bf4d6c83d09fc949764cb098f02d0f30b05e014"
-  integrity sha512-a2W3H85OpNo1/20LGsCwdehRf37hNdGl5a9+ZAYomxubFDgL8raRCoAArsJDAW0LhTeSf3xQ38RMAMLHN8ObTQ==
+"@cypress/vite-dev-server@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@cypress/vite-dev-server/-/vite-dev-server-8.0.0.tgz#13ca69f0644e7cdcc4cc5ca5f5e7f6ff24c4d45a"
+  integrity sha512-ZEeL2dmf+OogG6XiHrqYcBZTeRgHgs7rASaVAG1lkJmFblDLlQZJa0uq916J5OLSpxUcgsK1U7JHcXRzjsGdTw==
   dependencies:
     debug "^4.3.4"
     find-up "6.3.0"
@@ -3818,12 +3818,7 @@ slice-ansi@^8.0.0:
     ansi-styles "^6.2.3"
     is-fullwidth-code-point "^5.1.0"
 
-"source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.2.tgz#79fb88d97535a21cb27162cb05d211b67acea4ab"
-  integrity sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==
-
-source-map-js@^1.2.2:
+"source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1, source-map-js@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.2.tgz#79fb88d97535a21cb27162cb05d211b67acea4ab"
   integrity sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==
