@@ -21,7 +21,7 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
-    "@cypress/vite-dev-server": "^7.3.4",
+    "@cypress/vite-dev-server": "^8.0.0",
     "@vitejs/plugin-vue": "^6.0.10",
     "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/test-utils": "^2.4.6",
